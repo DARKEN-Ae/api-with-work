@@ -1,7 +1,7 @@
 let usersRow = document.querySelector(".users-row");
 let todosRow = document.querySelector(".todos-row");
 let postsRow = document.querySelector(".posts-row");
-let commentsRow = document.querySelector(".comments-row");
+let commentsRow = document.querySelector(".comment-row");
 let photosRow = document.querySelector(".photos-row");
 
 // function showLoading() {
@@ -36,7 +36,7 @@ function getUserCard(user) {
       <h5>Name: ${user.name}</h5>
       <h6>Username: ${user.username}</h6>
       <p>Email: ${user.email}</p>
-      <p>Adress: ${user.address.city}</p>
+      <p>Adress: ${user.address.street}<span>${user.address.city}</span></p>
       <div class="buttons">
        <button class="Todos"><a href="../todos.html">Todos</a></button>
        <button class="Posts"><a href="../posts.html">Posts</a></button>
@@ -64,6 +64,19 @@ function getPostsRow(post) {
     <div class="post-body">
       <h5>Title: ${post.title}</h5>
       <p>Body: ${post.body}</p>
+      <a href="./comments.html"><button class="Comments">Comments</button></a>
+    </div>
+  </div>
+  `;
+}
+
+function getCommentsRow(comment) {
+  return `
+  <div class="comment-card">
+    <div class="comment-body">
+      <h5>Name: ${comment.name}</h5>
+      <h6>Email: ${comment.email}</h6>
+      <p>Comment: ${comment.body}</p>
     </div>
   </div>
   `;
@@ -84,7 +97,7 @@ getData(`https://jsonplaceholder.typicode.com/users`, (users) => {
   // usersRow.innerHTML = "";
   users.map((user) => {
     getData(
-      `https://jsonplaceholder.typicode.com/todos?todosId=${user.id}`,
+      `https://jsonplaceholder.typicode.com/todos?userId=${user.id}`,
       (todos) => {
         let userCard = getUserCard(user);
         usersRow.innerHTML += userCard;
@@ -92,7 +105,6 @@ getData(`https://jsonplaceholder.typicode.com/users`, (users) => {
         todos.map((todo) => {
           let data = getTodosRow(todo);
           todosRow.innerHTML += data;
-          console.log(todo);
         });
       }
     );
@@ -102,6 +114,15 @@ getData(`https://jsonplaceholder.typicode.com/users`, (users) => {
         posts.map((post) => {
           let data = getPostsRow(post);
           postsRow.innerHTML += data;
+        });
+      }
+    );
+    getData(
+      `https://jsonplaceholder.typicode.com/comments?postId=${user.id}`,
+      (comments) => {
+        comments.map((comment) => {
+          let data = getCommentsRow(comment);
+          commentsRow.innerHTML += data;
         });
       }
     );
