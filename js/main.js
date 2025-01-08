@@ -48,30 +48,36 @@ function getUserCard(user) {
 
 function getTodosRow(todo) {
   let completedText = todo.completed ? "✅" : "❌";
-  return `
-  <div class="todo-card">
-    <div class="todo-body">
-     <h5>Title: ${todo.title}</h5>
-     <h6>Completed: ${completedText}</h6>
-   </div>
-  </div>
+  if (todo.userId == 1) {
+    return `
+    <div class="todo-card">
+      <div class="todo-body">
+       <h5>Title: ${todo.title}</h5>
+       <h6>Completed: ${completedText}</h6>
+      </div>
+    </div>
   `;
+  }
+  return "";
 }
 
 function getPostsRow(post) {
-  return `
-  <div class="post-card">
-    <div class="post-body">
-      <h5>Title: ${post.title}</h5>
-      <p>Body: ${post.body}</p>
-      <a href="./comments.html"><button class="Comments">Comments</button></a>
-    </div>
-  </div>
-  `;
+  if (post.userId == 1) {
+    return `
+    <div class="post-card">
+     <div class="post-body">
+        <h5>Title: ${post.title}</h5>
+        <p>Body: ${post.body}</p>
+        <a href="./comments.html"><button class="Comments">Comments</button></a>
+      </div>
+    </div>`;
+  }
+  return "";
 }
 
 function getCommentsRow(comment) {
-  return `
+  if (comment.postId == 1) {
+    return `
   <div class="comment-card">
     <div class="comment-body">
       <h5>Name: ${comment.name}</h5>
@@ -80,17 +86,22 @@ function getCommentsRow(comment) {
     </div>
   </div>
   `;
+  }
+  return "";
 }
 
 function getPhotosRow(photos) {
-  return `
-  <div class="photo-card">
-    <div class="photo-body">
+  if (photos.albumId == 1) {
+    return `
+     <div class="photo-card">
+      <div class="photo-body">
       <img src="${photos.url}" alt="${photos.title}" />
       <h5>Title: ${photos.title}</h5>
-    </div>
-  </div>
+       </div>
+     </div>
   `;
+  }
+  return "";
 }
 
 getData(`https://jsonplaceholder.typicode.com/users`, (users) => {
@@ -101,7 +112,6 @@ getData(`https://jsonplaceholder.typicode.com/users`, (users) => {
       (todos) => {
         let userCard = getUserCard(user);
         usersRow.innerHTML += userCard;
-        console.log(user);
         todos.map((todo) => {
           let data = getTodosRow(todo);
           todosRow.innerHTML += data;
