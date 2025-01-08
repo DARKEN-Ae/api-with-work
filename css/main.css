@@ -1,0 +1,142 @@
+*,
+::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Montserrat", serif;
+}
+body {
+  background: url(https://r4.wallpaperflare.com/wallpaper/827/65/320/firewatch-4k-best-wallpaper-e8f69da8c0b09c9880fc110ec8d2940a.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.loading {
+  color: #fff;
+}
+h2 {
+  color: #fff;
+}
+.users-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+  h5,
+  h6 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: bold;
+  }
+  p {
+    font-size: 12px;
+    margin: 0;
+  }
+  button {
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+    &:hover {
+      box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .Todos {
+    border: none;
+    background-color: red;
+    border-radius: 14px;
+    padding: 15px;
+    font-weight: 400;
+  }
+  .Posts {
+    border: none;
+    background-color: rgb(149, 0, 255);
+    border-radius: 14px;
+    padding: 15px;
+    font-weight: 400;
+  }
+  .Photos {
+    border: none;
+    background-color: rgb(255, 140, 0);
+    border-radius: 14px;
+    padding: 15px;
+    font-weight: 400;
+  }
+}
+/* page 2 start */
+.todos-row {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  .todo-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    .todo-body {
+      padding: 10px;
+      h5,
+      h6 {
+        color: #fff;
+      }
+    }
+  }
+}
+/* page 3 start */
+.posts-row {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  .post-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    .post-body {
+      padding: 10px;
+      h5,
+      p {
+        color: #fff;
+      }
+    }
+  }
+}
+/* page 4 start */
+.photos-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  .photo-card {
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    .photo-body {
+      h5 {
+        color: #fff;
+        padding: 15px;
+      }
+      img {
+        width: 100%;
+        border-radius: 16px 16px 0 0;
+      }
+    }
+  }
+}
